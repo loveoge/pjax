@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>pjax</title>
+<meta charset="utf-8">
+</head>
+<link rel="stylesheet" href="css/nprogress.css" media="screen">
+<script type="text/javascript" src="js/nprogress.js" charset="utf-8"></script>
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="js/pjax.js"></script>
+<body>
+<h1>My Site</h1>
+<div> Go to 首页.<a class="pjax" href="res1.html">第一页</a>.<a class="pjax" href="res2.html">第二页</a> </div>
+<div id="content">这是首页</div>
+<script type="text/javascript">
+pjax_init();
+//初始化pjax
+function pjax_init(){
+    document.addEventListener('pjax:send', function() {
+        NProgress.start();
+    });
+    document.addEventListener('pjax:complete', function() {
+        NProgress.done();
+    });
+    document.addEventListener('pjax:error', function() {
+    });
+    document.addEventListener('pjax:success', function() {
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        var pjax = new Pjax({
+            elements: 'a.pjax',
+            selectors: [
+                'title',
+                '#content'
+            ]
+        });
+    });
+}
+</script>
+</body>
+</html>
